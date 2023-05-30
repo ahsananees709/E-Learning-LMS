@@ -1,9 +1,9 @@
 import React from 'react'
-import course1 from "../../assets/course1.png";
-import course2 from "../../assets/course2.png";
-import course3 from "../../assets/course3.png";
-import course4 from "../../assets/course4.png";
-import course5 from "../../assets/course5.png";
+import course1 from "../../assets/nt-course1.png";
+import course2 from "../../assets/nt-course2.png";
+import course3 from "../../assets/nt-course3.png";
+import course4 from "../../assets/nt-course4.png";
+import course5 from "../../assets/nt-course5.png";
 import Card from './Card';
 export default function NonTechnicalCoursesSection() {
     const coursesImages = [
@@ -19,16 +19,16 @@ export default function NonTechnicalCoursesSection() {
         course5,
       ];
       const coursesNames = [
-        "Cloud Solutions Architecture",
-        "MEAN/MERN Stack",
-        "Mobile App Development",
-        "Software Quality Assurance",
-        "Web Engineering",
-        "Cloud Solutions Architecture",
-        "MEAN/MERN Stack",
-        "Mobile App Development",
-        "Software Quality Assurance",
-        "Web Engineering",
+        "Typing Course",
+        "Graphic Design",
+        "Freelancing",
+        "Microsoft Office",
+        "Digital Marketing",
+        "Typing Course",
+        "Graphic Design",
+        "Freelancing",
+        "Microsoft Office",
+        "Digital Marketing",
       ];
     const data = {
         category:"Non Technical Courses",

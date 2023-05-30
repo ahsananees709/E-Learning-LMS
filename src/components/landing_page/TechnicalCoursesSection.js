@@ -1,9 +1,9 @@
 import React from "react";
-import course1 from "../../assets/course1.png";
-import course2 from "../../assets/course2.png";
-import course3 from "../../assets/course3.png";
-import course4 from "../../assets/course4.png";
-import course5 from "../../assets/course5.png";
+import course1 from "../../assets/t-course1.png";
+import course2 from "../../assets/t-course2.png";
+import course3 from "../../assets/t-course3.png";
+import course4 from "../../assets/t-course4.png";
+import course5 from "../../assets/t-course5.png";
 import Card from "./Card";
 
 export default function TechnicalCoursesSection() {

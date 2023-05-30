@@ -20,7 +20,7 @@ export default function NavBar() {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Link to={"/"} style={{textDecoration:"none",padding:"7px",color:"#4C4C4C"}}>Home</Link>
-          <Link to={"/signuppage"} style={{textDecoration:"none",padding:"7px",color:"#4C4C4C"}}>About</Link>
+          <Link to={"/aboutus"} style={{textDecoration:"none",padding:"7px",color:"#4C4C4C"}}>About</Link>
           
           <NavDropdown title="Courses" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Technical</NavDropdown.Item>
