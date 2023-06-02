@@ -2,8 +2,11 @@ import React from "react";
 import logo from "../../assets/logo.png";
 import { Form, Formik } from "formik";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import NavBar from '../landing_page/NavBar';
 
 export default function SignUp() {
+  const navigate = useNavigate();
   const postDataToAPI = async (values) => {
     try {
       const res = await axios.post("http://localhost:5000/users", {
@@ -13,13 +16,25 @@ export default function SignUp() {
         confirmPassword: values.confirmPassword,
       });
       alert(res.data);
+      if (res.data === "Successfully registered!")
+      {
+        navigate("/signinpage");
+        return;
+        }
+      
     } catch (error) {
-      alert(error.message);
+      if (error.response && error.response.status === 409) {
+        // Error: Email already exists
+        alert("Email already exists. Please choose a different email.");
+      } else {
+        alert(error.message);
+      }
     }
   };
 
   return (
     <div style={{ backgroundColor: "#4b86b4" }}>
+    {<NavBar/>}
       <section className="vh-100" style={{ backgroundColor: "#fad9c1" }}>
         <div className="container h-100">
           <div className="row d-flex justify-content-center align-items-center h-100">
@@ -39,28 +54,7 @@ export default function SignUp() {
                           confirmPassword: "",
                         }}
                         onSubmit={(values) => {
-                          let errors = {};
-                          if (!values.name) {
-                            errors.name = "Name Field is Required";
-                          }
-                          if (!values.email) {
-                            errors.email = "Email Field is Required";
-                          }
-                          if (!values.password) {
-                            errors.password = "Password Field is Required";
-                          }
-                          if (!values.confirmPassword) {
-                            errors.confirmPassword =
-                              "Password Field is Required";
-                            alert(errors.confirmPassword);
-                          }
-                          if (values.password !== values.confirmPassword) {
-                            errors.confirmPassword =
-                              "Password Fields Should be same";
-                          }
-                          if (Object.keys(errors).length === 0) {
                             postDataToAPI(values);
-                          }
                         }}
                       >
                         {({ values, setFieldValue, handleChange, errors }) => (

@@ -7,36 +7,35 @@ import axios from "axios";
 
 export default function LogIn() {
   const navigate = useNavigate();
-    //Get API method Method here
+  //Get API method Method here
   const getDataFromAPI = async (values) => {
     try {
-      // For Admin Login
-      if (values.email === "admin@gmail.com" && values.password === "admin") {
-      //   const res = await axios.get(`http://localhost:5000/users?email=${values.email}&password=${values.password}`);
-      // alert(res.data);
-      navigate("/adminhome");
-      }
-      //For Other User Login
-      else {
-        const res = await axios.get(`http://localhost:5000/users?email=${values.email}&password=${values.password}`);
-      alert(res.data);
-      //navigate("/");
-      }
-      
+      const res = await axios.put(
+          "http://localhost:5000/users", {
+              email: values.email,
+              password: values.password,
+              confirmPassword:values.confirmPassword
+        }
+      );
+        alert(res.data);
+        if (res.data === "Password is Updated") {
+            navigate("/signinpage");
+            return;
+        }
+        
     } catch (error) {
       alert(error.message);
-    } 
     }
+  };
   return (
-    
-    <div style={{ backgroundColor: "#eee" }} className="vh-100">
-    {<NavBar/>}
+      <div style={{ backgroundColor: "#eee" }} className="vh-100">
+      {<NavBar/>}
       <section class="vh-60 vw-60">
         <div class="container-fluid h-custom">
           <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1 mt-3">
+            <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
               <Formik
-                initialValues={{ email: "", password: "" }}
+                initialValues={{ email: "", password: "",confirmPassword:"" }}
                 onSubmit={(values) => getDataFromAPI(values)}
               >
                 {({ values, handleChange }) => (
@@ -49,7 +48,7 @@ export default function LogIn() {
                   >
                     <div class="d-flex flex-row align-items-center justify-content-center ">
                       <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                        Login
+                        Update Password
                       </p>
                     </div>
                     <div class="form-outline mb-4">
@@ -79,10 +78,18 @@ export default function LogIn() {
                         onChange={handleChange}
                       />
                     </div>
-
-                    <div class="d-flex justify-content-between align-items-center">
-                      <Link class="text-body" to="/updateuser">Forgot Password</Link>
-                      
+                    <div class="form-outline mb-3">
+                      <label class="form-label" for="form3Example4">
+                        Confirm Password
+                      </label>
+                      <input
+                        type="password"
+                        id="form3Example4"
+                        name="confirmPassword"
+                        class="form-control form-control-lg"
+                        placeholder="Enter confirm password"
+                        onChange={handleChange}
+                      />
                     </div>
 
                     <div class="text-center text-lg-start mt-4 pt-2">
@@ -94,14 +101,8 @@ export default function LogIn() {
                           paddingRight: "3.5rem",
                         }}
                       >
-                        Login
+                        Update
                       </button>
-                      <p class="small fw-bold mt-2 pt-1 mb-0">
-                        Don't have an account?{" "}
-                        <Link to={"/signuppage"} style={{ color: "red" }}>
-                          Register
-                        </Link>
-                      </p>
                     </div>
                   </Form>
                 )}
