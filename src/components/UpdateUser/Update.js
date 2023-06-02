@@ -7,7 +7,7 @@ import axios from "axios";
 
 export default function LogIn() {
   const navigate = useNavigate();
-  //Get API method Method here
+  
   const getDataFromAPI = async (values) => {
     try {
       const res = await axios.put(
